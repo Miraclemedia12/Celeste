@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeste | Official Platform</title>
+    <style>
+        :root {
+            --primary-green: #00ff40;
+            --dark-bg: #001a05;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at top, #002b0f 0%, #000000 100%);
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        /* FLOATING TOP BAR */
+        .topbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            box-sizing: border-box;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--primary-green);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .join-btn {
+            background: var(--primary-green);
+            color: black;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        /* HERO VIDEO */
+        .hero {
+            padding-top: 120px;
+            text-align: center;
+        }
+
+        .video-box {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 10px;
+        }
+
+        video {
+            width: 100%;
+            border-radius: 18px;
+            display: block;
+        }
+
+        /* 7 BOXES GRID */
+        .works-grid {
+            width: 90%;
+            margin: 60px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .work-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .work-box:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-5px);
+        }
+
+        .work-box img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .work-box h3 {
+            color: var(--primary-green);
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .work-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #eee;
+        }
+
+        /* TRUST SECTION - BELOW BOXES */
+        .trust-section {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 64, 0.05));
+        }
+
+        .stat {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-green);
+            margin: 0;
+        }
+
+        /* FAQ SECTION */
+        .faq-section {
+            max-width: 750px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        details {
+            background: var(--glass-bg);
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+        }
+
+        summary {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary-green);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        summary::after { content: "↓"; }
+
+        .faq-ans {
+            padding: 0 20px 20px;
+            color: #ccc;
+            font-size: 15px;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 50px 0;
+            background: #000;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="logo">CELESTE</div>
+        <nav>
+            <a href="#how-it-works" style="color:white; text-decoration:none; margin-right:20px;">Process</a>
+            <a href="#faq" style="color:white; text-decoration:none;">FAQ</a>
+        </nav>
+        <a href="reward.html" class="join-btn">JOIN NOW</a>
+    </header>
+
+    <div class="hero">
+        <h1 style="font-size: 2rem;">Where Your Time Turns Into <span style="color:var(--primary-green)">Wealth</span></h1>
+        <div class="video-box">
+            <video src="video.mp4" controls autoplay muted loop></video>
+        </div>
+    </div>
+
+    <div class="works-grid" id="how-it-works">
+        <div class="work-box">
+            <img src="hero1.jpg">
+            <h3>Automated Time Earnings ⏰</h3>
+            <p>Spend 15 mins — ₦3,000. 30 mins — ₦6,000. 1 full hour — ₦12,000. On Celeste, your time is your payslip.</p>
+        </div>
+        <div class="work-box">
+            <img src="hero2.jpg">
+            <h3>Global Chat Rewards 💬</h3>
+            <p>From Lagos to London — your keyboard is your passport. Every emoji and reply adds value to your wallet.</p>
+        </div>
+        <div class="work-box">
+            <img src="hero3.jpg">
+            <h3>TikTok Synergy 💥</h3>
+            <p>Your content shouldn't just trend—it should pay. Celeste turns your social energy into real digits.</p>
+        </div>
+        <div class="work-box">
+            <img src="hero4.jpg">
+            <h3>Volume Payday 🎧</h3>
+            <p>Your playlist is now your income. Rate the beats and stack up rewards in rhythm with the music.</p>
+        </div>
+        <div class="work-box">
+            <img src="hero5.jpg">
+            <h3>CAC Verified Legitimacy ✅</h3>
+            <p>Celeste is officially registered and certified by the Corporate Affairs Commission. Trust is our foundation.</p>
+        </div>
+        <div class="work-box">
+            <img src="hero6.jpg">
+            <h3>Watch & Earn 🎬</h3>
+            <p>Enjoy trending skits and comedy videos. Every view adds ₦1,000 to your balance. Fun that pays instantly.</p>
+        </div>
+        <div class="work-box">
+            <img src="hero7.jpg">
+            <h3>Culinary Income 👨🏽‍🍳</h3>
+            <p>Share your recipes and teach the world to cook. Your kitchen skills are now a global income stream.</p>
+        </div>
+    </div>
+
+    <section class="trust-section">
+        <h2 class="stat">300,000+</h2>
+        <p style="font-size: 18px; letter-spacing: 1px;">ACTIVE USERS WORLDWIDE</p>
+        <p style="color: #888; max-width: 600px; margin: 20px auto;">Join the most trusted movement in digital wealth. Our community is growing every second—be part of the elite.</p>
+        <a href="reward.html" class="join-btn" style="display:inline-block; margin-top: 20px;">CLAIM YOUR SPOT</a>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <h2 style="text-align:center; margin-bottom: 30px;">Common Inquiries</h2>
+        
+        <details>
+            <summary>How do I start earning?</summary>
+            <div class="faq-ans">Simply register via the 'Join Now' button, verify your profile, and start engaging with the tasks shown in your dashboard.</div>
+        </details>
+
+        <details>
+            <summary>Is the withdrawal instant?</summary>
+            <div class="faq-ans">Yes! Once you reach the minimum threshold, you can request a payout directly to your bank or crypto wallet.</div>
+        </details>
+
+        <details>
+            <summary>How many videos can I watch daily?</summary>
+            <div class="faq-ans">There is currently no hard limit, allowing you to maximize your earnings based on your available time.</div>
+        </details>
+
+        <details>
+            <summary>Is Celeste available outside Nigeria?</summary>
+            <div class="faq-ans">Yes, Celeste is a global platform designed for users everywhere. Earnings are converted to your local currency.</div>
+        </details>
+
+        <details>
+            <summary>Is my data secure?</summary>
+            <div class="faq-ans">We use high-level encryption to ensure all user data and transaction records remain 100% private and secure.</div>
+        </details>
+    </section>
+
+    <footer class="footer">
+        <p style="font-weight:bold; color:var(--primary-green)">CELESTE</p>
+        <p style="color: #555; font-size: 13px;">&copy; 2026 Celeste — Where Your Time Turns Into Wealth.</p>
+    </footer>
+
+</body>
+</html>
+  
