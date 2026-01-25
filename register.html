@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celeste | Secure Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Paystack Inline Script -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle at center, #002b0f 0%, #000b02 70%, #000000 100%);
+            font-family: 'Inter', sans-serif;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: 900;
+            color: #00ff40;
+            text-align: center;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 10px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 255, 64, 0.1);
+            width: 100%;
+        }
+
+        .navbar a {
+            color: #00ff40;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 6px 10px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .navbar a.active { border-bottom: 3px solid #00ff40; }
+
+        .register-container {
+            width: 95%;
+            max-width: 480px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 64, 0.2);
+            backdrop-filter: blur(15px);
+            border-radius: 24px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .main-title {
+            font-size: 24px;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .plan-selection-text {
+            font-size: 18px;
+            color: white;
+            text-align: center;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .plan-name {
+            font-size: 20px;
+            font-weight: 900;
+            color: #00ff40;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid rgba(0, 255, 64, 0.1);
+            border-radius: 15px;
+            background-color: #001a08;
+            color: white;
+            font-size: 17px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border: 1px solid #00ff40;
+            background-color: #002b0f;
+        }
+        
+        .action-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #00ff40, #00cc33);
+            color: black;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 255, 64, 0.3);
+            transition: all 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        #payment-summary {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid #00ff40;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .summary-item:last-child { border-bottom: none; }
+
+        .total-row {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 15px;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: 900;
+            color: #00ff40;
+        }
+
+        .footer { text-align: center; padding: 25px 0; color: #444; font-size: 12px; text-transform: uppercase; }
+    </style>
+</head>
+<body>
+
+<div class="logo">CELESTE</div>
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="reward.html">Rewards</a>
+    <a href="register.html" class="active">Register</a>
+</div>
+
+<div class="register-container">
+    <!-- STEP 1: FORM -->
+    <div id="registration-view">
+        <div class="main-title">Create Your Account</div>
+        
+        <div class="plan-selection-text">
+            You have selected:
+            <span id="selected-plan-display" class="plan-name">Loading selection...</span>
+        </div>
+
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Choose a unique username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" id="phone-number" placeholder="Enter phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a strong password" required>
+            </div>
+
+            <button type="submit" class="action-button">REGISTER & PROCEED TO PAYMENT</button>
+        </form>
+    </div>
+
+    <!-- STEP 2: SUMMARY & PAYMENT -->
+    <div id="payment-summary">
+        <div class="main-title">Activate Account</div>
+        <p style="text-align:center; color:#aaa; font-size:14px; margin-bottom:10px;">Review your information before payment to Celeste Ecosystem.</p>
+        
+        <div class="summary-card">
+            <div class="summary-item">
+                <span style="color:#aaa">Subscriber:</span>
+                <span id="summary-name" style="font-weight:700">Name</span>
+            </div>
+            <div class="summary-item">
+                <span style="color:#aaa">Username:</span>
+                <span id="summary-user" style="font-weight:700">@User</span>
+            </div>
+            <div class="summary-item">
+                <span style="color:#aaa">Email:</span>
+                <span id="summary-email" style="font-weight:700">Email</span>
+            </div>
+            <div class="summary-item">
+                <span style="color:#aaa">Phone:</span>
+                <span id="summary-phone" style="font-weight:700">Phone</span>
+            </div>
+            <div class="summary-item">
+                <span style="color:#aaa">Plan:</span>
+                <span id="summary-plan" style="color:#00ff40; font-weight:700">Plan</span>
+            </div>
+            <div class="total-row">
+                <span>Total Due:</span>
+                <span id="summary-total">₦0.00</span>
+            </div>
+        </div>
+
+        <button id="final-pay-btn" class="action-button">Complete Payment Now</button>
+        <button onclick="location.reload()" style="background:none; border:none; color:#666; margin-top:15px; cursor:pointer; font-size:13px; text-decoration:underline; width:100%;">Cancel & Edit Details</button>
+    </div>
+</div>
+
+<div class="footer">&copy; 2026 CELESTE ECOSYSTEM | ENCRYPTED GATEWAY</div>
+
+<script>
+const PUBLIC_KEY = 'Pk_live_ed525c84b668b33982b108f17c1e057e94cb52e3';
+let userData = {};
+let amountToPay = 0;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const planDisplay = document.getElementById('selected-plan-display');
+    const selectedPlan = localStorage.getItem('selectedPlan') || "Euro-Lite (₦8,500)";
+    planDisplay.textContent = selectedPlan;
+    
+    const registrationForm = document.getElementById('registration-form');
+    registrationForm.addEventListener('submit', function(e) {
+        e.preventDefault(); 
+        
+        userData = {
+            fullName: document.getElementById('full-name').value,
+            username: document.getElementById('username').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone-number').value,
+            plan: selectedPlan.split('(')[0].trim()
+        };
+
+        // Populate Summary
+        document.getElementById('summary-name').textContent = userData.fullName;
+        document.getElementById('summary-user').textContent = "@" + userData.username;
+        document.getElementById('summary-email').textContent = userData.email;
+        document.getElementById('summary-phone').textContent = userData.phone;
+        document.getElementById('summary-plan').textContent = userData.plan;
+
+        amountToPay = selectedPlan.includes("Max") ? 14500 : 8500;
+        document.getElementById('summary-total').textContent = "₦" + amountToPay.toLocaleString();
+
+        document.getElementById('registration-view').style.display = 'none';
+        document.getElementById('payment-summary').style.display = 'block';
+        window.scrollTo(0, 0);
+    });
+
+    document.getElementById('final-pay-btn').addEventListener('click', payWithPaystack);
+});
+
+function payWithPaystack() {
+    let handler = PaystackPop.setup({
+        key: PUBLIC_KEY,
+        email: userData.email,
+        amount: amountToPay * 100, 
+        currency: 'NGN',
+        label: "Activation for Celeste Ecosystem", // Shows purpose of payment
+        ref: 'CEL-' + Math.floor((Math.random() * 1000000000) + 1),
+        metadata: {
+            custom_fields: [
+                { display_name: "Full Name", variable_name: "full_name", value: userData.fullName },
+                { display_name: "Username", variable_name: "username", value: userData.username }
+            ]
+        },
+        callback: function(response) {
+            const message = `🚀 *NEW CELESTE ACTIVATION*%0A%0A` +
+                            `👤 *Name:* ${userData.fullName}%0A` +
+                            `🆔 *Username:* ${userData.username}%0A` +
+                            `📧 *Email:* ${userData.email}%0A` +
+                            `📞 *Phone:* ${userData.phone}%0A` +
+                            `💎 *Plan:* ${userData.plan}%0A` +
+                            `💰 *Amount:* ₦${amountToPay}%0A` +
+                            `🧾 *Ref:* ${response.reference}%0A%0A` +
+                            `✅ *Status:* PAID TO CELESTE ECOSYSTEM`;
+            
+            const telegramUrl = `https://t.me/CoachMiracle1?text=${message}`;
+            window.location.href = telegramUrl;
+        }
+    });
+    handler.openIframe();
+}
+</script>
+</body>
+</html>
+
+  
