@@ -31,7 +31,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%;
+            padding: 15px 5%;
             background: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(20px);
             z-index: 1000;
@@ -42,24 +42,22 @@
         .logo-container {
             display: flex;
             align-items: center;
+            gap: 12px;
+            text-decoration: none;
         }
 
-        /* LOGO IMAGE STYLE */
         .logo-img {
-            height: 45px; /* Adjust height based on your logo design */
+            height: 40px;
             width: auto;
-            display: block;
             filter: drop-shadow(0 0 8px rgba(0, 255, 64, 0.4));
         }
 
-        /* FALLBACK TEXT LOGO (Hidden if using image) */
         .logo-text {
             font-size: 28px;
             font-weight: 900;
             color: var(--primary-green);
             letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(0, 255, 64, 0.8);
         }
 
         .main-join-btn {
@@ -75,7 +73,7 @@
             box-shadow: 0 0 15px rgba(0, 255, 64, 0.3);
         }
 
-        /* VIDEO SECTION (ABOUT US TARGET) */
+        /* VIDEO SECTION */
         .video-box {
             width: 90%;
             max-width: 800px;
@@ -96,7 +94,7 @@
             margin-bottom: 15px;
         }
 
-        /* HOW IT WORKS HEADER (FEATURES TARGET) */
+        /* HEADERS */
         .bright-header {
             text-align: center;
             padding: 80px 20px 40px;
@@ -135,7 +133,7 @@
             border-radius: 20px;
             padding: 24px;
             text-align: center;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.4s;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -177,10 +175,9 @@
             font-weight: 900;
             font-size: 13px;
             text-transform: uppercase;
-            transition: 0.3s;
         }
 
-        /* PROFESSIONAL STATS SECTION */
+        /* STATS SECTION */
         .trust-section {
             width: 90%;
             max-width: 1000px;
@@ -213,7 +210,6 @@
             justify-content: center;
             font-size: 28px;
             color: var(--primary-green);
-            box-shadow: 0 0 20px rgba(0, 255, 64, 0.2);
             position: relative;
         }
 
@@ -240,7 +236,6 @@
             margin: 0;
             font-weight: 900;
             color: var(--primary-green);
-            letter-spacing: -1px;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -253,8 +248,6 @@
             padding: 2px 6px;
             border-radius: 4px;
             border: 1px solid var(--primary-green);
-            letter-spacing: 1px;
-            font-weight: 900;
         }
 
         .stat-text p {
@@ -266,7 +259,7 @@
             letter-spacing: 2px;
         }
 
-        /* FAQ SECTION */
+        /* FAQ */
         .faq-section {
             max-width: 800px;
             margin: 50px auto 100px auto;
@@ -276,10 +269,10 @@
 
         .faq-section h2 {
             text-align: center;
-            margin-bottom: 40px;
-            font-weight: 900;
-            text-transform: uppercase;
             font-style: italic;
+            font-weight: 950;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
 
         details {
@@ -294,10 +287,9 @@
             padding: 22px;
             cursor: pointer;
             font-weight: 800;
-            color: #fff;
-            list-style: none;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
         summary::after { 
@@ -332,193 +324,106 @@
             margin: 0 auto;
         }
 
-        .footer-brand h2 {
-            font-size: 32px;
-            font-weight: 900;
-            color: var(--primary-green);
-            margin: 0 0 15px 0;
-            letter-spacing: 2px;
-        }
+        .footer-brand .logo-container { margin-bottom: 15px; }
+        .footer-brand .logo-text { font-size: 24px; }
+        .footer-brand .logo-img { height: 35px; }
 
-        .footer-brand p {
-            color: #999;
-            font-size: 15px;
-            margin-bottom: 25px;
-        }
+        .footer-brand p { color: #999; margin-bottom: 25px; font-size: 14px; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { width: 45px; height: 45px; background: #111; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; }
+        
+        .footer-column h3 { font-size: 18px; font-weight: 800; margin-bottom: 25px; color: white; }
+        .footer-column ul { list-style: none; padding: 0; }
+        .footer-column ul li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .footer-column ul li a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-column ul li a:hover { color: var(--primary-green); }
+        
+        .footer-column i { color: var(--primary-green); font-size: 16px; }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            width: 45px;
-            height: 45px;
-            background: #111;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            border-color: var(--primary-green);
-            color: var(--primary-green);
-        }
-
-        .footer-column h3 {
-            font-size: 18px;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: #fff;
-        }
-
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 15px;
-        }
-
-        .footer-column ul li a {
-            color: #999;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .footer-signup-btn {
-            display: inline-block;
-            background: #fff;
-            color: #000;
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            font-size: 14px;
-            margin-top: 10px;
-            transition: 0.3s;
-        }
-
-        .footer-signup-btn:hover {
-            background: var(--primary-green);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #999;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .contact-item i {
-            color: var(--primary-green);
-        }
-
-        .copyright {
-            margin-top: 60px;
-            text-align: center;
-            border-top: 1px solid #111;
-            padding-top: 30px;
-            color: #444;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        .copyright { margin-top: 60px; text-align: center; border-top: 1px solid #111; padding-top: 30px; color: #444; font-size: 12px; font-weight: 700; text-transform: uppercase; }
 
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; }
             .trust-section { flex-direction: column; text-align: center; }
-            .logo-img { height: 35px; }
         }
     </style>
 </head>
 <body>
 
     <div class="topbar">
-        <div class="logo-container">
-            <!-- REPLACE logo.png WITH YOUR ACTUAL FILE PATH -->
-            <img src="logo.png" alt="Celeste Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <div class="logo-text" style="display:none;">CELESTE</div>
-        </div>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placeholder.com/40/00ff40/000000?text=C'">
+            <div class="logo-text">CELESTE</div>
+        </a>
         <a href="reward.html" class="main-join-btn">JOIN NOW</a>
     </div>
 
-    <!-- Video Box (TARGET FOR ABOUT US) -->
+    <!-- Video Box -->
     <div id="about-section" class="video-box">
         <video src="video.mp4" poster="hero1.jpg" controls></video>
         <a href="reward.html" class="main-join-btn" style="display: block; width: fit-content; margin: 10px auto;">JOIN CELESTE NOW 🔥</a>
     </div>
 
-    <!-- Header (TARGET FOR FEATURES) -->
+    <!-- Features Header -->
     <div id="features-section" class="bright-header">
         <h2>HOW IT WORKS</h2>
     </div>
 
-    <!-- Main Grid -->
+    <!-- Grid Layout -->
     <div class="how-it-works-section">
         <div class="works-grid">
             <div class="work-box">
                 <img src="hero1.jpg" alt="Earnings">
                 <h3>Automated Time Earnings ⏰</h3>
-                <p>Time is Money, but most people just spend theirs. On Celeste, you earn from it. Spend 1 hour? That’s ₦12,000 in your pocket.</p>
+                <p>Time is Money. On Celeste, you earn from it. Spend 1 hour? That’s ₦12,000 in your pocket.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
 
             <div class="work-box">
                 <img src="hero2.jpg" alt="Chat">
                 <h3>Global Chat Rewards 💬</h3>
-                <p>From Lagos to London — your keyboard is now your passport. Every emoji and reply isn't just talk — it's a transaction.</p>
+                <p>From Lagos to London — your keyboard is now your passport. Every reply is a transaction.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
 
             <div class="work-box">
                 <img src="hero3.jpg" alt="TikTok">
                 <h3>TikTok Cash Flow 💥</h3>
-                <p>Your content shouldn't just trend — it should pay. Every post and every vibe you drop now counts in digits.</p>
+                <p>Your content shouldn't just trend — it should pay. Every post counts in digits.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
 
             <div class="work-box">
                 <img src="hero4.jpg" alt="Music">
                 <h3>Music & Rhythm Payday 🎧</h3>
-                <p>Your playlist just became your payslip. Every beat you vibe to and every rating you drop turns into real cash.</p>
+                <p>Your playlist just became your payslip. Every beat turned into real cash.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
 
             <div class="work-box">
                 <img src="hero5.jpg" alt="Legal">
                 <h3>CAC Verified & Certified ✅</h3>
-                <p>Celeste is officially registered by the Corporate Affairs Commission (CAC), Nigeria. A registered brand built on trust.</p>
+                <p>Celeste is officially registered by the Corporate Affairs Commission (CAC), Nigeria.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
 
             <div class="work-box">
                 <img src="hero6.jpg" alt="Comedy">
                 <h3>Watch Comedy & Earn 🎬</h3>
-                <p>Enjoy trending skits and viral clips — every view adds value. 1 comedy video earned you ₦1000.</p>
+                <p>Enjoy trending skits — every view adds value. 1 comedy video earned you ₦1000.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
 
             <div class="work-box">
                 <img src="hero7.jpg" alt="Cooking">
                 <h3>Cook & Get Paid 👨🏽‍🍳</h3>
-                <p>That recipe you know? It’s money now. Share your local dishes and watch your skills turn into global cash.</p>
+                <p>Share your local dishes and watch your skills turn into global cash flow.</p>
                 <a href="reward.html" class="box-btn">GET STARTED</a>
             </div>
         </div>
     </div>
 
-    <!-- PROFESSIONAL STATS SECTION -->
+    <!-- Stats Section -->
     <div class="trust-section">
         <div class="stat-item">
             <div class="stat-icon">
@@ -571,20 +476,19 @@
         </details>
     </div>
 
-    <!-- FOOTER -->
+    <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-grid">
             <div class="footer-brand">
-                <div class="logo-container" style="margin-bottom: 20px;">
-                    <img src="logo.png" alt="Celeste Logo" class="logo-img" style="height: 40px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="logo-text" style="display:none; font-size: 24px;">CELESTE</div>
+                <div class="logo-container">
+                    <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placeholder.com/40/00ff40/000000?text=C'">
+                    <div class="logo-text">CELESTE</div>
                 </div>
-                <p>Celeste is an innovation ecosystem connecting people, creating opportunities, and rewarding engagement through media, gigs, and skills.</p>
+                <p>Celeste is an innovation ecosystem connecting people, creating opportunities, and rewarding engagement.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -594,12 +498,13 @@
                     <li><a href="#features-section">Features</a></li>
                     <li><a href="#faq-section">FAQ</a></li>
                 </ul>
-                <a href="reward.html" class="footer-signup-btn">GET STARTED</a>
             </div>
             <div class="footer-column">
                 <h3>Contact</h3>
-                <div class="contact-item"><i class="fas fa-envelope"></i><span>support@celeste.network</span></div>
-                <div class="contact-item"><i class="fas fa-location-dot"></i><span>Lagos, Nigeria</span></div>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:support@celeste.network">support@celeste.network</a></li>
+                    <li><i class="fas fa-location-dot"></i> <span style="color: #999;">Lagos, Nigeria</span></li>
+                </ul>
             </div>
         </div>
         <div class="copyright">&copy; 2026 Celeste. Where Your Time Turns Into Wealth.</div>
