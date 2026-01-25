@@ -11,6 +11,7 @@
             --dark-bg: #000b02;
             --glass: rgba(255, 255, 255, 0.07);
             --border: rgba(255, 255, 255, 0.15);
+            --container-width: 1100px;
         }
 
         body {
@@ -23,7 +24,7 @@
             scroll-behavior: smooth;
         }
 
-        /* STICKY TOPBAR */
+        /* TOPBAR */
         .topbar {
             position: fixed;
             top: 0;
@@ -32,7 +33,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 5%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
             z-index: 1000;
             box-sizing: border-box;
@@ -42,24 +43,33 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-decoration: none;
         }
 
         .logo-img {
-            height: 40px;
+            height: 45px;
             width: auto;
-            filter: drop-shadow(0 0 8px rgba(0, 255, 64, 0.4));
+            filter: drop-shadow(0 0 10px rgba(0, 255, 64, 0.6));
         }
 
         .logo-text {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 900;
-            color: var(--primary-green);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            background: linear-gradient(90deg, #00ff40, #fff, #00ff40);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
         }
 
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* BUTTON STYLES */
         .main-join-btn {
             background: var(--primary-green);
             color: black;
@@ -71,83 +81,110 @@
             text-transform: uppercase;
             transition: 0.3s;
             box-shadow: 0 0 15px rgba(0, 255, 64, 0.3);
+            border: none;
+            cursor: pointer;
         }
 
-        /* VIDEO SECTION */
-        .video-box {
+        .main-join-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 64, 0.5);
+        }
+
+        /* FEATURE BOX BUTTONS */
+        .box-btn {
+            background: white;
+            color: black;
+            padding: 14px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 14px;
+            text-transform: uppercase;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            transition: 0.3s;
+            border: none;
+            text-align: center;
+            margin-top: auto; /* Push to bottom */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .box-btn:hover {
+            background: var(--primary-green);
+            transform: scale(1.02);
+        }
+
+        /* LAYOUT */
+        .unified-container {
             width: 90%;
-            max-width: 800px;
-            margin: 130px auto 20px auto;
+            max-width: var(--container-width);
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
+        }
+
+        .video-box {
+            margin-top: 130px;
+            margin-bottom: 40px;
             background: var(--glass);
             border: 2px solid var(--primary-green);
             border-radius: 24px;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 0 40px rgba(0, 255, 64, 0.15);
-            scroll-margin-top: 100px;
         }
 
         .video-box video {
             width: 100%;
             height: auto;
             border-radius: 16px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        /* HEADERS */
         .bright-header {
             text-align: center;
-            padding: 80px 20px 40px;
-            max-width: 900px;
-            margin: 0 auto;
-            scroll-margin-top: 100px;
+            padding: 60px 0 30px;
         }
 
         .bright-header h2 {
-            font-size: clamp(2.8rem, 10vw, 5rem);
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
             font-weight: 950;
             color: var(--primary-green);
             text-transform: uppercase;
-            letter-spacing: -2px;
-            margin: 0;
-            line-height: 0.9;
-            text-shadow: 0 0 25px rgba(0, 255, 64, 0.5);
             font-style: italic;
+            margin: 0;
+            line-height: 1;
         }
 
-        /* GRID SECTION */
-        .how-it-works-section {
-            width: 92%;
-            margin: 20px auto 60px;
-        }
-
+        /* GRID */
         .works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
+            margin-bottom: 60px;
         }
 
         .work-box {
             background: var(--glass);
             border: 1px solid var(--border);
             border-radius: 20px;
-            padding: 24px;
+            padding: 25px;
             text-align: center;
             transition: 0.4s;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            min-height: 520px; /* Consistent height */
         }
 
         .work-box:hover {
             border-color: var(--primary-green);
-            transform: translateY(-8px);
-            background: rgba(255,255,255,0.1);
+            transform: translateY(-10px);
         }
 
         .work-box img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
             border-radius: 14px;
             margin-bottom: 20px;
@@ -156,32 +193,18 @@
         .work-box h3 {
             color: var(--primary-green);
             margin: 10px 0;
-            font-size: 1.3rem;
             font-weight: 800;
         }
 
         .work-box p {
+            color: #ccc;
             font-size: 15px;
             margin-bottom: 25px;
-            color: #ccc;
         }
 
-        .box-btn {
-            background: #fff;
-            color: black;
-            padding: 12px 20px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 13px;
-            text-transform: uppercase;
-        }
-
-        /* STATS SECTION */
+        /* STATS */
         .trust-section {
-            width: 90%;
-            max-width: 1000px;
-            margin: 80px auto;
+            margin: 40px auto;
             padding: 40px;
             background: var(--glass);
             border: 1px solid var(--border);
@@ -232,47 +255,15 @@
         }
 
         .stat-text h2 {
-            font-size: 40px;
+            font-size: 36px;
             margin: 0;
             font-weight: 900;
             color: var(--primary-green);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .active-label {
-            font-size: 9px;
-            background: rgba(0, 255, 64, 0.2);
-            color: var(--primary-green);
-            padding: 2px 6px;
-            border-radius: 4px;
-            border: 1px solid var(--primary-green);
-        }
-
-        .stat-text p {
-            margin: 0;
-            color: #888;
-            text-transform: uppercase;
-            font-weight: 800;
-            font-size: 12px;
-            letter-spacing: 2px;
         }
 
         /* FAQ */
         .faq-section {
-            max-width: 800px;
-            margin: 50px auto 100px auto;
-            padding: 0 20px;
-            scroll-margin-top: 100px;
-        }
-
-        .faq-section h2 {
-            text-align: center;
-            font-style: italic;
-            font-weight: 950;
-            margin-bottom: 30px;
-            text-transform: uppercase;
+            margin-bottom: 100px;
         }
 
         details {
@@ -301,49 +292,28 @@
 
         details[open] summary::after { content: "\f146"; }
 
-        .faq-content {
-            padding: 0 22px 22px 22px;
-            color: #aaa;
-            font-size: 14px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 15px;
-        }
-
         /* FOOTER */
         .main-footer {
             background: #000;
-            padding: 80px 5% 40px;
+            padding: 80px 0 40px;
             border-top: 1px solid var(--border);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr;
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 60px;
         }
 
-        .footer-brand .logo-container { margin-bottom: 15px; }
-        .footer-brand .logo-text { font-size: 24px; }
-        .footer-brand .logo-img { height: 35px; }
-
-        .footer-brand p { color: #999; margin-bottom: 25px; font-size: 14px; }
-        .social-links { display: flex; gap: 15px; }
-        .social-links a { width: 45px; height: 45px; background: #111; border: 1px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; }
-        
-        .footer-column h3 { font-size: 18px; font-weight: 800; margin-bottom: 25px; color: white; }
         .footer-column ul { list-style: none; padding: 0; }
-        .footer-column ul li { margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .footer-column ul li a { color: #999; text-decoration: none; transition: 0.3s; }
-        .footer-column ul li a:hover { color: var(--primary-green); }
-        
-        .footer-column i { color: var(--primary-green); font-size: 16px; }
+        .footer-column ul li { margin-bottom: 15px; display: flex; align-items: center; gap: 12px; color: #999; }
+        .footer-column i { color: var(--primary-green); }
+        .footer-column a { color: #999; text-decoration: none; }
 
-        .copyright { margin-top: 60px; text-align: center; border-top: 1px solid #111; padding-top: 30px; color: #444; font-size: 12px; font-weight: 700; text-transform: uppercase; }
+        .copyright { margin-top: 60px; text-align: center; border-top: 1px solid #111; padding-top: 30px; color: #444; font-size: 12px; text-transform: uppercase; }
 
         @media (max-width: 768px) {
-            .footer-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
             .trust-section { flex-direction: column; text-align: center; }
         }
     </style>
@@ -352,25 +322,22 @@
 
     <div class="topbar">
         <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placeholder.com/40/00ff40/000000?text=C'">
+            <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placeholder.com/45/00ff40/000000?text=C'">
             <div class="logo-text">CELESTE</div>
         </a>
         <a href="reward.html" class="main-join-btn">JOIN NOW</a>
     </div>
 
-    <!-- Video Box -->
-    <div id="about-section" class="video-box">
+    <div id="about-section" class="unified-container video-box">
         <video src="video.mp4" poster="hero1.jpg" controls></video>
-        <a href="reward.html" class="main-join-btn" style="display: block; width: fit-content; margin: 10px auto;">JOIN CELESTE NOW 🔥</a>
+        <a href="reward.html" class="main-join-btn">JOIN CELESTE NOW 🔥</a>
     </div>
 
-    <!-- Features Header -->
-    <div id="features-section" class="bright-header">
+    <div id="features-section" class="unified-container bright-header">
         <h2>HOW IT WORKS</h2>
     </div>
 
-    <!-- Grid Layout -->
-    <div class="how-it-works-section">
+    <div class="unified-container">
         <div class="works-grid">
             <div class="work-box">
                 <img src="hero1.jpg" alt="Earnings">
@@ -423,15 +390,14 @@
         </div>
     </div>
 
-    <!-- Stats Section -->
-    <div class="trust-section">
+    <div class="unified-container trust-section">
         <div class="stat-item">
             <div class="stat-icon">
                 <i class="fas fa-users-gear"></i>
                 <div class="active-dot"></div>
             </div>
             <div class="stat-text">
-                <h2>300,000+ <span class="active-label">ACTIVE</span></h2>
+                <h2>300,000+</h2>
                 <p>Verified Users</p>
             </div>
         </div>
@@ -451,45 +417,38 @@
         </div>
     </div>
 
-    <!-- FAQ -->
-    <div id="faq-section" class="faq-section">
-        <h2>Frequently Asked Questions</h2>
+    <div id="faq-section" class="unified-container faq-section">
+        <h2 style="text-align: center; font-style: italic; font-weight: 950; text-transform: uppercase; margin-bottom: 30px;">Frequently Asked Questions</h2>
         <details>
             <summary>How do I start earning on Celeste?</summary>
-            <div class="faq-content">Simply click 'Join Now', complete your registration, and choose your preferred activity. You can start earning within minutes.</div>
+            <div style="padding: 22px; color: #aaa;">Simply click 'Join Now', complete your registration, and choose your preferred activity. You can start earning within minutes.</div>
         </details>
         <details>
             <summary>Is my account information secure?</summary>
-            <div class="faq-content">Yes. Celeste uses end-to-end encryption for all user data and financial transactions.</div>
+            <div style="padding: 22px; color: #aaa;">Yes. Celeste uses end-to-end encryption for all user data and financial transactions.</div>
         </details>
         <details>
             <summary>What are the withdrawal limits?</summary>
-            <div class="faq-content">Withdrawals are processed daily. There is a low minimum threshold to ensure quick access to funds.</div>
+            <div style="padding: 22px; color: #aaa;">Withdrawals are processed daily. There is a low minimum threshold to ensure quick access to funds.</div>
         </details>
         <details>
             <summary>Is Celeste available in my country?</summary>
-            <div class="faq-content">Celeste is a global ecosystem. While CAC certified in Nigeria, it is accessible from anywhere in the world.</div>
+            <div style="padding: 22px; color: #aaa;">Celeste is a global ecosystem. While CAC certified in Nigeria, it is accessible from anywhere in the world.</div>
         </details>
         <details>
             <summary>Can I earn from multiple activities?</summary>
-            <div class="faq-content">Absolutely. You can earn from watching videos, chatting, and sharing content simultaneously. No caps.</div>
+            <div style="padding: 22px; color: #aaa;">Absolutely. You can earn from watching videos, chatting, and sharing content simultaneously. No caps.</div>
         </details>
     </div>
 
-    <!-- Footer -->
     <footer class="main-footer">
-        <div class="footer-grid">
+        <div class="unified-container footer-grid">
             <div class="footer-brand">
-                <div class="logo-container">
+                <div class="logo-container" style="margin-bottom: 20px;">
                     <img src="logo.png" alt="C" class="logo-img" onerror="this.src='https://via.placeholder.com/40/00ff40/000000?text=C'">
                     <div class="logo-text">CELESTE</div>
                 </div>
                 <p>Celeste is an innovation ecosystem connecting people, creating opportunities, and rewarding engagement.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
             </div>
             <div class="footer-column">
                 <h3>Platform</h3>
@@ -503,7 +462,7 @@
                 <h3>Contact</h3>
                 <ul>
                     <li><i class="fas fa-envelope"></i> <a href="mailto:support@celeste.network">support@celeste.network</a></li>
-                    <li><i class="fas fa-location-dot"></i> <span style="color: #999;">Lagos, Nigeria</span></li>
+                    <li><i class="fas fa-location-dot"></i> <span>Lagos, Nigeria</span></li>
                 </ul>
             </div>
         </div>
