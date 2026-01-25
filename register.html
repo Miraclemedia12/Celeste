@@ -57,7 +57,7 @@
         .register-container {
             width: 95%;
             max-width: 480px;
-            margin: 30px auto 100px auto; /* Margin bottom for activity feed space */
+            margin: 30px auto 100px auto; 
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(0, 255, 64, 0.2);
             backdrop-filter: blur(15px);
@@ -180,7 +180,6 @@
             color: #00ff40;
         }
 
-        /* --- NEW LIVE ACTIVITY POPUP STYLES --- */
         .live-activity-box {
             position: fixed;
             bottom: -100px;
@@ -261,7 +260,6 @@
 </div>
 
 <div class="register-container">
-    <!-- STEP 1: FORM -->
     <div id="registration-view">
         <div class="main-title">Create Your Account</div>
         
@@ -300,7 +298,6 @@
         </form>
     </div>
 
-    <!-- STEP 2: SUMMARY & PAYMENT -->
     <div id="payment-summary">
         <div class="main-title">Activate Account</div>
         <p style="text-align:center; color:#aaa; font-size:14px; margin-bottom:10px;">Review your information before payment to Celeste Ecosystem.</p>
@@ -339,7 +336,6 @@
 
 <div class="footer">&copy; 2026 CELESTE ECOSYSTEM</div>
 
-<!-- LIVE ACTIVITY POPUP -->
 <div id="live-activity" class="live-activity-box">
     <div class="activity-indicator" id="activity-icon">
         <i class="fas fa-check-circle"></i>
@@ -356,17 +352,16 @@ const PUBLIC_KEY = 'Pk_live_ed525c84b668b33982b108f17c1e057e94cb52e3';
 let userData = {};
 let amountToPay = 0;
 
-// ACTIVITY FEED DATA
 const ACTIVITY_DATA = [
     { type: 'payment', name: 'Ngozi A.', amount: '8,500', loc: 'Lagos', time: 'just now' },
     { type: 'withdrawal', name: 'Suleiman K.', amount: '45,000', loc: 'Kano', time: '2 mins ago' },
     { type: 'payment', name: 'Chidi E.', amount: '14,500', loc: 'Enugu', time: '1 min ago' },
     { type: 'withdrawal', name: 'Amaka O.', amount: '120,000', loc: 'Asaba', time: '5 mins ago' },
     { type: 'payment', name: 'Babatunde G.', amount: '8,500', loc: 'Ibadan', time: 'just now' },
-    { type: 'withdrawal', name: 'Blessing F.', amount: '32,500', loc: 'Port Harcourt', time: '3 mins ago' }
-    { type: 'Payment', name: 'Raphael E.', amount: '14,500', loc: 'Akwa ibom', time: 'just now' }
-    { type: 'withdrawal', name: 'Joseph C.', amount: '150,000', loc: 'Benin', time: '10 mins ago' }
-    { type: 'Payment', name: 'Ruth B.', amount: '14,500', loc: 'Cross River', time: '6 mins ago' }
+    { type: 'withdrawal', name: 'Blessing F.', amount: '32,500', loc: 'Port Harcourt', time: '3 mins ago' },
+    { type: 'payment', name: 'Raphael E.', amount: '14,500', loc: 'Akwa ibom', time: 'just now' },
+    { type: 'withdrawal', name: 'Joseph C.', amount: '150,000', loc: 'Benin', time: '10 mins ago' },
+    { type: 'payment', name: 'Ruth B.', amount: '14,500', loc: 'Cross River', time: '6 mins ago' },
     { type: 'withdrawal', name: 'Precious I.', amount: '50,500', loc: 'Abuja', time: '3 mins ago' }
 ];
 
@@ -379,7 +374,6 @@ function showNextActivity() {
     const icon = document.getElementById('activity-icon');
     const data = ACTIVITY_DATA[currentActivityIndex];
 
-    // Reset styles
     box.classList.remove('withdrawal-theme');
     
     if (data.type === 'payment') {
@@ -394,26 +388,36 @@ function showNextActivity() {
     }
 
     document.getElementById('activity-time').innerText = data.time;
-
-    // Slide In
     box.classList.add('active');
 
-    // Slide Out after 5 seconds
     setTimeout(() => {
         box.classList.remove('active');
         currentActivityIndex = (currentActivityIndex + 1) % ACTIVITY_DATA.length;
-        // Wait 4 seconds before showing next
         setTimeout(showNextActivity, 4000);
     }, 5000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Start activity feed
     setTimeout(showNextActivity, 3000);
 
     const planDisplay = document.getElementById('selected-plan-display');
-    const selectedPlan = localStorage.getItem('selectedPlan') || "Euro-Lite (₦8,500)";
-    planDisplay.textContent = selectedPlan;
+    // Track selection from reward page
+    const storedPlan = localStorage.getItem('selectedPlan');
+    let displayPlan = "";
+    
+    if (storedPlan === "elite") {
+        displayPlan = "Euro-Elite ₦8,500";
+        amountToPay = 8500;
+    } else if (storedPlan === "max") {
+        displayPlan = "Euro-Max ₦14,500";
+        amountToPay = 14500;
+    } else {
+        // Fallback default
+        displayPlan = "Euro-Elite ₦8,500";
+        amountToPay = 8500;
+    }
+    
+    planDisplay.textContent = displayPlan;
     
     const registrationForm = document.getElementById('registration-form');
     registrationForm.addEventListener('submit', function(e) {
@@ -424,7 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
             username: document.getElementById('username').value,
             email: document.getElementById('email').value,
             phone: document.getElementById('phone-number').value,
-            plan: selectedPlan.split('(')[0].trim()
+            plan: displayPlan
         };
 
         document.getElementById('summary-name').textContent = userData.fullName;
@@ -432,8 +436,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('summary-email').textContent = userData.email;
         document.getElementById('summary-phone').textContent = userData.phone;
         document.getElementById('summary-plan').textContent = userData.plan;
-
-        amountToPay = selectedPlan.includes("Max") ? 14500 : 8500;
         document.getElementById('summary-total').textContent = "₦" + amountToPay.toLocaleString();
 
         document.getElementById('registration-view').style.display = 'none';
