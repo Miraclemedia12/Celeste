@@ -156,6 +156,7 @@
         .earn-box i {
             color: #00ff40;
             margin-top: 3px;
+            font-size: 16px;
         }
 
         /* WITHDRAWAL BOX */
@@ -281,21 +282,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
             background-color: #001a08;
             border: 1px solid #00ff40;
             border-radius: 20px;
-            padding: 30px;
+            padding: 40px 30px;
             width: 90%;
-            max-width: 350px;
+            max-width: 380px;
             text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 255, 64, 0.2);
+        }
+
+        .modal-icon {
+            font-size: 50px;
+            color: #00ff40;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            color: #00ff40;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .modal-text {
+            color: #e0e0e0;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
         }
 
         .modal-close-btn {
@@ -303,10 +328,17 @@
             color: black;
             border: none;
             border-radius: 8px;
-            padding: 12px 25px;
+            padding: 14px 30px;
             font-weight: 900;
             cursor: pointer;
-            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+
+        .modal-close-btn:hover {
+            background: #fff;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -331,12 +363,12 @@
         </div>
         <div class="timer"><i class="fas fa-clock"></i> DISCOUNT ENDS: <span id="countdown1">01:30:00</span></div>
 
-        <div class="earn-box"><i class="fas fa-euro-sign"></i> One-time Activation Fee: €4.25</div>
-        <div class="earn-box"><i class="fas fa-gift"></i> €3.50 (₦7,000) Welcome Cashback</div>
+        <div class="earn-box"><i class="fas fa-id-card"></i> One-time Activation Fee: €4.25</div>
+        <div class="earn-box"><i class="fas fa-wallet"></i> €3.50 (₦7,000) Welcome Cashback</div>
         <div class="earn-box"><i class="fas fa-video"></i> €1 (₦2,000) per Comedy Review</div>
-        <div class="earn-box"><i class="fas fa-users"></i> €0.15 (₦300) Indirect Activity Bonus</div>
+        <div class="earn-box"><i class="fas fa-diagram-predecessor"></i> €0.15 (₦300) Indirect Activity Bonus</div>
         <div class="earn-box"><i class="fas fa-calendar-check"></i> Subscription Valid For 6 Months</div>
-        <div class="earn-box"><i class="fas fa-lock"></i> Limited Earning Potential Upgradeable</div>
+        <div class="earn-box"><i class="fas fa-lock-open"></i> Limited Earning Potential Upgradeable</div>
         <div class="earn-box"><i class="fas fa-bolt"></i> Access to TikTok & Telegram Add-ons</div>
 
         <div class="withdraw-box">
@@ -351,7 +383,7 @@
 
     <!-- EURO MAX PLAN -->
     <div class="reward-box">
-        <div class="best-plan">Most Profitable</div>
+        <div class="best-plan">MOST PROFITABLE</div>
         <div class="plan-label">Euro-Max</div>
         <div class="price-container">
             <div class="old-price">₦30,000</div>
@@ -359,18 +391,18 @@
         </div>
         <div class="timer"><i class="fas fa-clock"></i> DISCOUNT ENDS: <span id="countdown2">01:30:00</span></div>
 
-        <div class="earn-box"><i class="fas fa-euro-sign"></i> One-time Activation Fee: €7.25</div>
-        <div class="earn-box"><i class="fas fa-gift"></i> €6.00 (₦12,000) Welcome Cashback</div>
+        <div class="earn-box"><i class="fas fa-id-card-clip"></i> One-time Activation Fee: €7.25</div>
+        <div class="earn-box"><i class="fas fa-wallet"></i> €6.00 (₦12,000) Welcome Cashback</div>
         <div class="earn-box"><i class="fas fa-video"></i> €2 (₦4,000) per Comedy Review</div>
-        <div class="earn-box"><i class="fas fa-network-wired"></i> €0.2 (₦400) 1st Indirect Bonus</div>
+        <div class="earn-box"><i class="fas fa-sitemap"></i> €0.2 (₦400) 1st Indirect Bonus</div>
         <div class="earn-box"><i class="fas fa-calendar-star"></i> Subscription Valid For 12 Months</div>
         <div class="earn-box"><i class="fas fa-infinity"></i> Unlimited Daily Review Earnings</div>
         <div class="earn-box"><i class="fas fa-rocket"></i> Full Access to High-Tier Add-ons</div>
 
         <div class="withdraw-box">
-            <span class="star-header">★ DAILY WITHDRAWAL ★</span>
+            <span class="star-header"><i class="fas fa-star"></i> DAILY WITHDRAWAL <i class="fas fa-star"></i></span>
             <span class="label">WITHDRAWAL WINDOW</span>
-            <span class="value">Every Day (5PM - 7PM)</span>
+            <span class="value">Every Day (9AM - 6PM)</span>
             <span class="label">MINIMUM PAYOUT</span>
             <span class="value">₦10,000</span>
         </div>
@@ -384,20 +416,23 @@
 <!-- ACTIVITY NOTIFICATION -->
 <div id="activity-feed" class="activity-feed-container">
     <div class="activity-icon" id="act-icon"><i class="fas fa-circle-check"></i></div>
-    <div id="activity-text">Initializing live activity feed...</div>
+    <div id="activity-text">Live activity monitoring active...</div>
 </div>
 
-<!-- Custom Modal Box -->
+<!-- PROFESSIONAL ACCESS MODAL -->
 <div id="access-denied-modal" class="modal">
     <div class="modal-content">
-        <h2 style="color:#00ff40; font-size:24px; font-weight:900; margin-bottom:15px;">ACCESS DENIED</h2>
-        <p style="color:white; margin-bottom:20px;">You must select an Earning Plan (Lite or Max) to proceed to registration.</p>
-        <button class="modal-close-btn" onclick="closeModal()">CHOOSE A PLAN</button>
+        <div class="modal-icon"><i class="fas fa-shield-exclamation"></i></div>
+        <h2 class="modal-title">Selection Required</h2>
+        <p class="modal-text">
+            To proceed with your account registration, you must first select a preferred earning structure. Please review our <strong>Euro-Lite</strong> or <strong>Euro-Max</strong> plans and click "Activate" to continue.
+        </p>
+        <button class="modal-close-btn" onclick="closeModal()">Review Plans</button>
     </div>
 </div>
 
 <script>
-// 10 Unique Activity Entries
+// 10 Unique Activity Entries with Icons
 const ACTIVITIES = [
     { name: "Olamide B.", type: "withdrawn", amount: "€45 (₦90,000)", loc: "Lagos", time: "2m ago", icon: "fa-wallet" },
     { name: "Emeka U.", type: "activated", amount: "₦14,500", plan: "Euro-Max", loc: "Enugu", time: "just now", icon: "fa-bolt" },
@@ -419,25 +454,19 @@ function cycleActivity() {
     const iconDiv = document.getElementById('act-icon');
     const act = ACTIVITIES[activityIndex];
 
-    // Update Icon
     iconDiv.innerHTML = `<i class="fas ${act.icon}"></i>`;
 
-    // Build Message
     let msg = act.type === 'activated' 
         ? `<span class="activity-user">${act.name}</span> from ${act.loc} activated <span class="activity-user">${act.plan}</span> <span class="activity-amount">${act.amount}</span>`
         : `<span class="activity-user">${act.name}</span> from ${act.loc} successfully withdrawn <span class="activity-amount">${act.amount}</span>`;
 
     text.innerHTML = `${msg}<span class="activity-time">${act.time}</span>`;
     
-    // Slide up
     feed.classList.add('show-activity');
     
-    // Slide down after 8 seconds
     setTimeout(() => {
         feed.classList.remove('show-activity');
-        // Move to next index
         activityIndex = (activityIndex + 1) % ACTIVITIES.length;
-        // Wait 3 seconds hidden before showing next
         setTimeout(cycleActivity, 3000);
     }, 8000);
 }
@@ -463,7 +492,6 @@ function showModal() { document.getElementById('access-denied-modal').style.disp
 function closeModal() { document.getElementById('access-denied-modal').style.display = 'none'; }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // 1:30:00 Duration
     const timerSeconds = 1 * 3600 + 30 * 60; 
     startTimer(timerSeconds, document.getElementById('countdown1'));
     startTimer(timerSeconds, document.getElementById('countdown2'));
@@ -471,15 +499,17 @@ window.addEventListener('DOMContentLoaded', () => {
     // Handle Plan Selection
     document.querySelectorAll('.plan-button').forEach(btn => {
         btn.addEventListener('click', () => {
-            localStorage.setItem('selectedPlan', btn.getAttribute('data-plan'));
+            const selectedPlan = btn.getAttribute('data-plan');
+            localStorage.setItem('selectedPlan', selectedPlan);
             window.location.href = 'register.html';
         });
     });
 
-    // Handle Register Link
+    // Handle Register Link with Modal Logic
     document.getElementById('register-link').addEventListener('click', (e) => {
-        if (!localStorage.getItem('selectedPlan')) {
-            e.preventDefault();
+        e.preventDefault();
+        const plan = localStorage.getItem('selectedPlan');
+        if (!plan) {
             showModal();
         } else {
             window.location.href = 'register.html';
@@ -494,4 +524,3 @@ window.addEventListener('DOMContentLoaded', () => {
 </body>
 </html>
 
-  
