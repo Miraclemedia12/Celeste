@@ -265,7 +265,7 @@
         
         <div class="plan-selection-text">
             You have selected:
-            <span id="selected-plan-display" class="plan-name">Loading selection...</span>
+            <span id="selected-plan-display" class="plan-name">Checking selection...</span>
         </div>
 
         <form id="registration-form">
@@ -351,6 +351,7 @@
 const PUBLIC_KEY = 'Pk_live_ed525c84b668b33982b108f17c1e057e94cb52e3';
 let userData = {};
 let amountToPay = 0;
+let displayPlan = "";
 
 const ACTIVITY_DATA = [
     { type: 'payment', name: 'Ngozi A.', amount: '8,500', loc: 'Lagos', time: 'just now' },
@@ -401,18 +402,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(showNextActivity, 3000);
 
     const planDisplay = document.getElementById('selected-plan-display');
-    // Track selection from reward page
-    const storedPlan = localStorage.getItem('selectedPlan');
-    let displayPlan = "";
     
-    if (storedPlan === "elite") {
-        displayPlan = "Euro-Elite ₦8,500";
-        amountToPay = 8500;
-    } else if (storedPlan === "max") {
+    // Improved Tracking Logic
+    const storedPlan = (localStorage.getItem('selectedPlan') || "").toLowerCase();
+    
+    // Robust check for Max vs Elite
+    if (storedPlan.includes("max") || storedPlan.includes("14500") || storedPlan.includes("14,500")) {
         displayPlan = "Euro-Max ₦14,500";
         amountToPay = 14500;
     } else {
-        // Fallback default
+        // Defaults to Elite 8500 if nothing found or Elite found
         displayPlan = "Euro-Elite ₦8,500";
         amountToPay = 8500;
     }
